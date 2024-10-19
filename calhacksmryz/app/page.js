@@ -21,7 +21,7 @@ export default function Home() {
             value={url}
             onChange={handleInputChange}
           />
-          <Button variant="contained">
+          <Button variant="contained" href="/loading">
             Quizcribe
           </Button>
         </Box>
