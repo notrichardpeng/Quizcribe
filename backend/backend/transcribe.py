@@ -5,7 +5,7 @@ from deepgram import (
 import yt_dlp
 
 # The API key you created in step 1
-DEEPGRAM_API_KEY = 'b23751bbcbb133353627339710e60e2bbf33d090'
+DEEPGRAM_API_KEY = 'INSERT API KEY'
 
 
 def extract_video(link):
