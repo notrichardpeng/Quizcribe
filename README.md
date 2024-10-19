@@ -18,6 +18,6 @@ npm run dev
 cd backend
 python manage.py runserver
 ```
-The app should be at localhost:3000
+The app should be at `localhost:3000`
 
 Frontend in Next.js, Backend in Django
