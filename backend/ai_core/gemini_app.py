@@ -69,7 +69,7 @@ def api_generate_quiz(summary):
     questions = raw_quiz_questions.strip().split('\n\n')  # Split by double newlines to separate questions
     
 
-    for question_block in questions[1:]:
+    for question_block in questions[1: ]:
         lines = question_block.strip().split('\n')
         
         # Extract the question text (first line of the block)
