@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import { CircularProgress, Button } from '@mui/material';
 
@@ -18,9 +20,17 @@ const Loading = () => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div 
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '100vh',  // Full viewport height
+        flexDirection: 'column' // For vertical stacking
+      }}
+    >
       {loading ? (
-        <div className="flex flex-col items-center">
+        <div style={{ textAlign: 'center' }}>
           <CircularProgress />
           <p>Generating AI response...</p>
         </div>
