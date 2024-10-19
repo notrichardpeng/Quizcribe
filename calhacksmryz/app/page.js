@@ -10,9 +10,13 @@ export default function Home() {
     setUrl(e.target.value);
   };
 
+  const HOST_URL = "http://localhost:8000/quizcribe_api"
+
   const handleSubmit = async () => {
+    console.log(url)
+
     try {
-      const response = await fetch('/api/', {
+      const response = await fetch(`${HOST_URL}/transcribe/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -60,15 +64,15 @@ export default function Home() {
         <Box
           component="form"
           onSubmit={handleSubmit}
-          sx={{ 
-            mt: 10, 
-            display: 'grid', 
-            gap: 2, 
-            p: 4, 
-            backgroundColor: 'background.paper', 
-            borderRadius: '12px', 
+          sx={{
+            mt: 10,
+            display: 'grid',
+            gap: 2,
+            p: 4,
+            backgroundColor: 'background.paper',
+            borderRadius: '12px',
             width: { xs: '100%', md: '60%' },
-            boxShadow: 1 
+            boxShadow: 1
           }}
         >
           <TextField
