@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Summary and Quiz</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <input type="url" name="url" required placeholder="Enter YouTube URL">
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
