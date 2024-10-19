@@ -1,42 +1,22 @@
-"use client";
+'use client';
 
-import React, { useState } from 'react';
-import { CircularProgress, Button } from '@mui/material';
+import Head from 'next/head'
+import { useState } from 'react';
+import CardTemp from './card';
 
-const Loading = () => {
-  // const [loading, setLoading] = useState(false);
-  // const [aiResponse, setAiResponse] = useState('');
+export default function QuizPage() {
 
-  // const handleStartProcessing = () => {
-  //   setLoading(true);
-  //   setAiResponse('');
-
-  //   // Simulate AI processing with a timeout (replace this with a real API call)
-  //   setTimeout(() => {
-  //     const response = 'AI has generated the answer!';
-  //     setAiResponse(response);
-  //     setLoading(false);
-  //   }, 3000); // Simulate 3 seconds of loading
-  // };
-
+  const [toggle,setToggle] = useState(false);
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '100vh',  // Full viewport height
-        flexDirection: 'column' // For vertical stacking
-      }}
-    >
-      <div style={{ textAlign: 'center' }}>
-        <CircularProgress />
-        <p>Dissecting video... This may take a while...</p>
-      </div>
+    <>
+      <Head>
+        <title>QuizPage</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
 
-      {/* {aiResponse && <p className="text-green-500 mt-4">{aiResponse}</p>} */}
-    </div>
-  );
-};
-
-export default Loading;
+        <div className='h-[100vh] w-[100vw] flex justify-center ease-linear duration-300 items-center bg-gray-100 dark:bg-slate-900'>
+            <CardTemp />
+        </div>
+    </>
+  )
+}
