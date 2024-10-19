@@ -4,9 +4,8 @@ from deepgram import (
 )
 import yt_dlp
 
-# The API key you created in step 1
-DEEPGRAM_API_KEY = 'INSERT API KEY'
-
+# The API key 
+DEEPGRAM_API_KEY = 'INSERT API KEY HERE'
 
 def extract_video(link):
 
@@ -45,7 +44,7 @@ def transcribe(video_url):
     }
 
     # Make the HTTP request
-    conn.request("POST", "/v1/listen", payload, headers)
+    conn.request("POST", "/v1/listen?smart_format=true&detect_language=true", payload, headers)
 
     # Get the response from the HTTP request
     res = conn.getresponse()
@@ -53,6 +52,7 @@ def transcribe(video_url):
 
     starting = data.decode("utf-8").index('"transcript"')
     ending = data.decode("utf-8").index('"words"')
-    return data.decode("utf")[starting + 14:ending - 26]
+    summary_start = data.decode("utf-8").index('"summary"')
+    return data.decode("utf")[starting + 14:ending - 26] + "\nSummary: " + data.decode("utf")[summary_start + 39:len(data.decode('utf-8')) - 4]
 
-print(transcribe(extract_video("https://www.youtube.com/watch?v=Tn6-PIqc4UM")))
+print(transcribe(extract_video("https://www.youtube.com/watch?v=hM_ab3LKfGE&t=13s")))
