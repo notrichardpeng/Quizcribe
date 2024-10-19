@@ -30,12 +30,13 @@ import http.client
 import json
 
 def transcribe(video_url):
+    video_link = extract_video(video_url)
 
     # Create the connection
     conn = http.client.HTTPSConnection("api.deepgram.com")
 
     # Define the payload for the HTTP request
-    payload = json.dumps({"url": video_url})
+    payload = json.dumps({"url": video_link})
 
     # Define the headers for the HTTP request
     headers = {
@@ -52,7 +53,4 @@ def transcribe(video_url):
 
     starting = data.decode("utf-8").index('"transcript"')
     ending = data.decode("utf-8").index('"words"')
-    summary_start = data.decode("utf-8").index('"summary"')
-    return data.decode("utf")[starting + 14:ending - 26] + "\nSummary: " + data.decode("utf")[summary_start + 39:len(data.decode('utf-8')) - 4]
-
-print(transcribe(extract_video("https://www.youtube.com/watch?v=hM_ab3LKfGE&t=13s")))
+    return data.decode("utf")[starting + 14:ending - 26]
