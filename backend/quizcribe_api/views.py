@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import AllowAny
 
 from ai_core import transcribe
 
@@ -8,11 +9,17 @@ class TranscribeAndSummarizeView(APIView):
     """
     Handles transcribing and summarizing using Deepgram and Gemini
     """
+    permission_classes = [AllowAny]
+
     def post(self, request):
+
+        print("\n\n\n\n")
+
         url = request.data.get('url')
         if not url:
             return Response({'error': 'No URL provided'}, status=status.HTTP_400_BAD_REQUEST)
         
+        print(url)
         try:
             transcript = transcribe(url)
             return Response({'response': transcript}, status=status.HTTP_200_OK)
