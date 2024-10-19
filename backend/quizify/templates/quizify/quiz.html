@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+</head>
+<body>
+    <h1>Summary</h1>
+    <p>{{ video.summary }}</p>
+    <h2>Questions</h2>
+    <ul>
+        {% for question in questions %}
+        <li>
+            <p>{{ question.text }}</p>
+            <!-- 实际应用中应隐藏答案，并在用户提交后验证答案 -->
+            <p>Answer: {{ question.answer }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
