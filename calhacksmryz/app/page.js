@@ -27,7 +27,7 @@ export default function Home() {
       const data = await response.json();
 
       if (response.ok) {
-        setFetched(data.url);
+        setFetched(data["response"]);
       } else {
         console.error('Error:', data.error);
       }
