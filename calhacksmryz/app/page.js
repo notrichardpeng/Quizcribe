@@ -34,8 +34,43 @@ export default function Home() {
 
   return (
     <>
-      <Container maxWidth="lg" sx={{ mt: 5 }}>
-        <Box sx={{ mt: '25vh', display: 'flex', alignItems: 'center', gap: 2 }}>
+      <Container
+        maxWidth="lg"
+        sx={{
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          overflow: 'hidden',
+          py: 10,
+          px: { xs: 2, md: 4 },
+        }}
+      >
+        {/* Header */}
+        <Box component="header">
+          <Typography variant="h3" component="h1" fontWeight="bold">
+            Quizcribe
+          </Typography>
+          <Typography variant="body1" sx={{ mt: 2 }}>
+            The Quizcribe uses Deepgram and Google Gemini models to summarize and generate quizzes from videos.
+          </Typography>
+        </Box>
+
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          sx={{ 
+            mt: 10, 
+            display: 'grid', 
+            gap: 2, 
+            p: 4, 
+            backgroundColor: 'background.paper', 
+            borderRadius: '12px', 
+            width: { xs: '100%', md: '60%' },
+            boxShadow: 1 
+          }}
+        >
           <TextField
             label="Video URL"
             variant="outlined"
@@ -57,11 +92,11 @@ export default function Home() {
           </Box>
         )}
 
-      <Box sx={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <Button variant="contained" href='quiz'>
-          Quiz
-        </Button>
-      </Box>
+        <Box sx={{ mt: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Button variant="contained" href='quiz'>
+            Quiz
+          </Button>
+        </Box>
 
       </Container>
     </>
