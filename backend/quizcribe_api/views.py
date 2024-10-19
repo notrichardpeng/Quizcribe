@@ -12,14 +12,10 @@ class TranscribeAndSummarizeView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
-
-        print("\n\n\n\n")
-
         url = request.data.get('url')
         if not url:
             return Response({'error': 'No URL provided'}, status=status.HTTP_400_BAD_REQUEST)
         
-        print(url)
         try:
             transcript = transcribe(url)
             return Response({'response': transcript}, status=status.HTTP_200_OK)
