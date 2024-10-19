@@ -4,7 +4,7 @@ from rest_framework import status
 
 class TranscribeAndSummarizeView(APIView):
     """
-    Handles AI-related processing using GPT.
+    Handles transcribing and summarizing using Deepgram and Gemini
     """
     def post(self, request):
         prompt = request.data.get('prompt')
@@ -17,9 +17,9 @@ class TranscribeAndSummarizeView(APIView):
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-class GPTSummaryView(APIView):
+class GenerateQA(APIView):
     """
-    Handles AI-related processing for summarization tasks.
+    Handles generating questions and answers
     """
     def post(self, request):
         text = request.data.get('text')
