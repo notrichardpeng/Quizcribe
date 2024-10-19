@@ -21,19 +21,17 @@ class TranscribeAndSummarizeView(APIView):
 
 
 
-
-
-class GenerateQA(APIView):
-    """
-    Handles generating questions and answers
-    """
-    def post(self, request):
-        text = request.data.get('text')
-        if not text:
-            return Response({'error': 'No text provided'}, status=status.HTTP_400_BAD_REQUEST)
+# class GenerateQA(APIView):
+#     """
+#     Handles generating questions and answers
+#     """
+#     def post(self, request):
+#         text = request.data.get('text')
+#         if not text:
+#             return Response({'error': 'No text provided'}, status=status.HTTP_400_BAD_REQUEST)
         
-        try:
-            summary = generate_summary(text)
-            return Response({'summary': summary}, status=status.HTTP_200_OK)
-        except Exception as e:
-            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+#         try:
+#             summary = generate_summary(text)
+#             return Response({'summary': summary}, status=status.HTTP_200_OK)
+#         except Exception as e:
+#             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
