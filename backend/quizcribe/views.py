@@ -19,9 +19,9 @@ def index(request):
             
             return redirect('quiz', video_id=video.id)
     
-    return render(request, 'quizify/index.html')
+    return render(request, 'quizcribe/index.html')
  
 def quiz(request, video_id):
     video = Video.objects.get(id=video_id)
     questions = Question.objects.filter(video=video)
-    return render(request, 'quizify/quiz.html', {'video': video, 'questions': questions})
+    return render(request, 'quizcribe/quiz.html', {'video': video, 'questions': questions})
