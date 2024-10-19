@@ -1,7 +1,6 @@
 from django.urls import path
-from . import views
+from views import TranscribeAndSummarizeView
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('quiz/<int:video_id>/', views.quiz, name='quiz'),
+    path('transcribe/', TranscribeAndSummarizeView.as_view(), name='transcribe'),  # Map the view to the URL
 ]
