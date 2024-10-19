@@ -56,7 +56,6 @@ def api_summarize(text_input):
     """
     
     summary = summarize_text(text_input)
-    print(f"Summary:\n{summary}\n")
     return summary
 
 # API 2: Quiz Generation API Call
@@ -91,7 +90,6 @@ def api_generate_quiz(summary):
             'choices': choices
         })
    
-    print(f"Quiz Questions (parsed):\n{quiz_questions}\n")
     return quiz_questions
 
 
