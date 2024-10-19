@@ -2,20 +2,26 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
+from ai_core import transcribe
+
 class TranscribeAndSummarizeView(APIView):
     """
     Handles transcribing and summarizing using Deepgram and Gemini
     """
     def post(self, request):
-        prompt = request.data.get('prompt')
-        if not prompt:
-            return Response({'error': 'No prompt provided'}, status=status.HTTP_400_BAD_REQUEST)
+        url = request.data.get('url')
+        if not url:
+            return Response({'error': 'No URL provided'}, status=status.HTTP_400_BAD_REQUEST)
         
         try:
-            generated_text = generate_gpt_response(prompt)
-            return Response({'response': generated_text}, status=status.HTTP_200_OK)
+            transcript = transcribe(url)
+            return Response({'response': transcript}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+
 
 class GenerateQA(APIView):
     """
