@@ -56,18 +56,14 @@ export default function CardTemp({ question, questionIndex, totalQuestions, onCh
               let buttonColor = "primary";
               let isDisabled = false;
 
-              // 如果已经提交，判断按钮颜色
               if (submitted) {
                 if (choice === selectedChoice && choice.correct) {
-                  // 用户选择的正确答案，绿色背景
                   buttonVariant = "contained";
                   buttonColor = "success";
                 } else if (choice === selectedChoice && !choice.correct) {
-                  // 用户选择的错误答案，红色背景
                   buttonVariant = "contained";
                   buttonColor = "error";
                 } else if (choice.correct) {
-                  // 正确的答案，绿色背景
                   buttonVariant = "contained";
                   buttonColor = "success";
                 } else {
@@ -85,7 +81,18 @@ export default function CardTemp({ question, questionIndex, totalQuestions, onCh
                   color={buttonColor}
                   onClick={() => onChoiceSelect(choice)}
                   disabled={isDisabled}
-                  sx={{ my: 1, flexGrow: 1 }}
+                  sx={{ 
+                    my: 1, 
+                    flexGrow: 1,
+                    display: "-webkit-box",
+                    WebkitBoxOrient: "vertical",
+                    textOverflow: "ellipsis",
+                    width: '100%',
+                    mb: 2,
+                    wordBreak: "break-word",
+                    hyphens: 'auto',
+                    maxWidth:350,
+                  }}
                 >
                   {choice.text}
                 </Button>

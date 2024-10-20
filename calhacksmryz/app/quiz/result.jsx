@@ -1,26 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, CardContent, Typography, Button, Box } from '@mui/material';
 
 export default function QuizResult({ score, totalQuestions, questions, userAnswers }) {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
+
   return (
     <Card className='bg-zinc-50' sx={{ 
-      display: 'flex', 
-      justifyContent: 'center', 
-      alignItems: 'center', 
-      width: { xs: '90%', sm: '85%', md: '80%', lg: '75%' },
-      height: 'auto',
-      borderRadius: 3, 
-      boxShadow: 3,
-      p: 3
+        display: 'flex', 
+        flexDirection: 'column',
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        width: { xs: '90%', sm: '85%', md: '80%', lg: '75%' },
+        height: '750px',
+        borderRadius: 3, 
+        boxShadow: 3,
+        p: 3
     }}>
       <CardContent sx={{ 
-        flex: '1 0 auto', 
         display: 'flex', 
         flexDirection: 'column', 
-        justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
         textAlign: 'center',
+        overflowY: 'auto',
       }}>
         <Typography variant="h4" sx={{ mb: 2, fontWeight:"bold"}}>
           Your Score: {score}/{totalQuestions}
@@ -30,10 +34,10 @@ export default function QuizResult({ score, totalQuestions, questions, userAnswe
             <Box
                 key={index}
                 sx={{
-                    p: 2, // Adds padding inside each question block
-                    mb: 3, // Adds margin below each block to separate from the next
-                    border: '1px solid #e0e0e0', // Light border around each question block
-                    borderRadius: '8px', // Optional: adds rounded corners
+                    p: 2,
+                    mb: 3,
+                    border: '1px solid #e0e0e0',
+                    borderRadius: '8px',
                     boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
                     backgroundColor: 'background.paper',
                     width: '80%',
