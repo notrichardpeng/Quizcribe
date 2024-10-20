@@ -3,6 +3,7 @@
 import Head from 'next/head'
 import { useState } from 'react';
 import CardTemp from './card';
+import QuizResult from './result';
 import { Card, CardContent, CardActions, CardMedia, Box, Button, Typography, IconButton } from '@mui/material';
 
 const questions = [
@@ -38,6 +39,7 @@ export default function QuizPage() {
     const [score, setScore] = useState(0);
     const [submitted, setSubmitted] = useState(false);
     const [isCorrect, setIsCorrect] = useState(null);
+    const [userAnswers, setUserAnswers] = useState([]);
     const [isFinished, setIsFinished] = useState(false);
     const totalQuestions = questions.length;
 
@@ -49,13 +51,14 @@ export default function QuizPage() {
 
     const handleSubmit = () => {
         if (selectedChoice) {
-          if (selectedChoice.correct) {
-            setScore(score + 1);
-            setIsCorrect(true);
-          } else {
-            setIsCorrect(false);
-          }
-          setSubmitted(true);
+            setUserAnswers([...userAnswers, selectedChoice.text]);
+            if (selectedChoice.correct) {
+                setScore(score + 1);
+                setIsCorrect(true);
+            } else {
+                setIsCorrect(false);
+            }
+            setSubmitted(true);
         }
     };
 
@@ -81,42 +84,19 @@ export default function QuizPage() {
 
         <div className='h-[100vh] w-[100vw] flex justify-center ease-linear duration-300 items-center'>
             {!isFinished ? (
-            <CardTemp
-                question={questions[currentQuestionIndex]}
-                questionIndex={currentQuestionIndex + 1}
-                totalQuestions={totalQuestions}
-                onChoiceSelect={handleChoiceSelect}
-                onSubmit={handleSubmit}
-                onNext={handleNext}
-                selectedChoice={selectedChoice}
-                submitted={submitted}
-                isCorrect={isCorrect}
-            />
+                <CardTemp
+                    question={questions[currentQuestionIndex]}
+                    questionIndex={currentQuestionIndex + 1}
+                    totalQuestions={totalQuestions}
+                    onChoiceSelect={handleChoiceSelect}
+                    onSubmit={handleSubmit}
+                    onNext={handleNext}
+                    selectedChoice={selectedChoice}
+                    submitted={submitted}
+                    isCorrect={isCorrect}
+                />
             ) : (
-                <Card className='bg-zinc-50' sx={{ 
-                    display: 'flex', 
-                    justifyContent: 'center', 
-                    alignItems: 'center', 
-                    width: { xs: '90%', sm: '85%', md: '80%', lg: '75%' },
-                    height: 300,
-                    borderRadius: 3, 
-                    boxShadow: 3
-                  }}>
-                    <CardContent sx={{ 
-                      flex: '1 0 auto', 
-                      display: 'flex', 
-                      flexDirection: 'column', 
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      width: '100%'
-                    }}>
-                      <Typography variant="h4" component="div" sx={{ textAlign: 'center' }}>
-                        Your Score: {score}/{totalQuestions}
-                      </Typography>
-                      <Button className='bg-zinc-700 text-white' variant="contained" href="/" sx={{ mt: 10, mb: -10 }}>Home</Button>
-                    </CardContent>
-                  </Card>
-
+                <QuizResult score={score} totalQuestions={totalQuestions} questions={questions} userAnswers={userAnswers} />
             )}
         </div>
     </>
