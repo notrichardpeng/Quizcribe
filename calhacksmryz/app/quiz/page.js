@@ -3,6 +3,7 @@
 import Head from 'next/head'
 import { useState } from 'react';
 import CardTemp from './card';
+import { Card, CardContent, CardActions, CardMedia, Box, Button, Typography, IconButton } from '@mui/material';
 
 const questions = [
     {
@@ -92,9 +93,30 @@ export default function QuizPage() {
                 isCorrect={isCorrect}
             />
             ) : (
-            <div>
-                <h1>Your Score: {score}/{totalQuestions}</h1>
-            </div>
+                <Card className='bg-zinc-50' sx={{ 
+                    display: 'flex', 
+                    justifyContent: 'center', 
+                    alignItems: 'center', 
+                    width: 800, 
+                    height: 328, 
+                    borderRadius: 3, 
+                    boxShadow: 3
+                  }}>
+                    <CardContent sx={{ 
+                      flex: '1 0 auto', 
+                      display: 'flex', 
+                      flexDirection: 'column', 
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      width: '100%'
+                    }}>
+                      <Typography variant="h4" component="div" sx={{ textAlign: 'center' }}>
+                        Your Score: {score}/{totalQuestions}
+                      </Typography>
+                      <Button className='bg-zinc-700 text-white' variant="contained" href="/" sx={{ mt: 10, mb: -10 }}>Home</Button>
+                    </CardContent>
+                  </Card>
+
             )}
         </div>
     </>
