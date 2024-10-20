@@ -97,8 +97,8 @@ export default function QuizPage() {
                     display: 'flex', 
                     justifyContent: 'center', 
                     alignItems: 'center', 
-                    width: 800, 
-                    height: 328, 
+                    width: { xs: '90%', sm: '85%', md: '80%', lg: '75%' },
+                    height: 300,
                     borderRadius: 3, 
                     boxShadow: 3
                   }}>
