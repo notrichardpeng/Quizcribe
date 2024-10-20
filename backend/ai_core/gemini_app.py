@@ -87,7 +87,6 @@ def api_generate_quiz(summary):
             # Format and add the choice to the list
         
             choice_text = choice_text.replace(' (correct)', '').replace(' (incorrect)', '').split(') ')[1].strip()
-            print(choice_text)
             choice_text = re.sub(r'^[^a-zA-Z0-9]+|[^a-zA-Z0-9]+$', '', choice_text)
 
             choices.append({
