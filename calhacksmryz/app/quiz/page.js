@@ -20,9 +20,11 @@ export default function QuizPage() {
   const totalQuestions = questions?.length;
 
   const handleChoiceSelect = (choice) => {
-    setSelectedChoice(choice);
-    setSubmitted(false);
-    setIsCorrect(null);
+    if(!submitted){
+      setSelectedChoice(choice);
+      setSubmitted(false);
+      setIsCorrect(null);  
+    }
   };
   
   const handleSubmit = () => {

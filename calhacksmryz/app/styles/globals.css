@@ -10,7 +10,9 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  @apply bg-zinc-800 text-white
+  background-image: url('https://wallpapercat.com/w/full/e/f/1/797227-2560x1440-desktop-hd-pastel-colors-wallpaper-image.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .custom-link {
