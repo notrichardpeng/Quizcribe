@@ -1,5 +1,6 @@
 # Quizcribe
-![image](https://github.com/user-attachments/assets/c3e677cb-60ae-4082-a772-d5cc865e4787)
+![屏幕截图 2024-10-20 112001](https://github.com/user-attachments/assets/bcb28a88-70d2-49b2-a65e-5ca9e130e8b4)
+
 Calhacks 11.0 Michael Siu, Richard Peng, Yiling Yuan, Zhen Liu
 
 ## Overview
