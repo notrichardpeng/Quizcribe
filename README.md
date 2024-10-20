@@ -33,7 +33,7 @@ python manage.py runserver
 The app should be at `localhost:3000`
 
 ## Tech Stack
-* Frontend: Next.js/React, Material UI
+* Frontend: Next.js/React, Tailwind CSS, Material UI
 * Backend: Django/Python
 * API: Deepgram (Speech to Text), Google Gemini 1.5, YouTube DL
 
