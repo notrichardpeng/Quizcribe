@@ -105,7 +105,7 @@ export default function Home() {
             sx={{
               textAlign: "center",
               fontWeight: "semibold",
-              mt: 10  // Material-UI's spacing system (theme spacing multiplier)
+              mt: 10  
             }}
           >
             <CircularProgress size="3rem" />
