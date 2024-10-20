@@ -62,23 +62,6 @@ export default function Home() {
   const enterQuiz = async () => {
     setIsTesting(true);
 
-    if (file) {
-      const formData = new FormData();
-      formData.append('file', file);
-
-      const uploadResponse = await fetch(`${HOST_URL}/upload`, {
-        method: 'POST',
-        body: formData,
-      });
-
-      const uploadData = await uploadResponse.json();
-      if (uploadResponse.ok) {
-        console.log('File uploaded successfully', uploadData);
-      } else {
-        console.error('Upload error:', uploadData.error);
-      }
-    }
-
     const response = await fetch(`${HOST_URL}/generate-qa/`, {
       method: 'POST',
       headers: {
