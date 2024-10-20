@@ -38,14 +38,14 @@ def call_gemini(prompt, system_instruction):
 
 # Function to summarize text
 def summarize_text(input):
-    summary_prompt = f"Summarize the following text:\n\n{input}"
+    summary_prompt = f"Summarize the following text without any markdown formating:\n\n{input}"
     system_instruction = "You are an expert at summarizing transcripts."
     return call_gemini(summary_prompt, system_instruction)
 
 # Function to generate quiz questions based on summary
  #output question in a list of python dictionary
 def generate_quiz_questions(summary):
-    question_prompt = f"Generate three quiz questions based on the following summary, add '(correct)' only behind correct choice:\n\n{summary}"
+    question_prompt = f"Generate three quiz questions based on the following summary, only add '(correct)' behind correct choice:\n\n{summary}"
     system_instruction = "You are an expert in generating quiz questions from summarized content."
     return call_gemini(question_prompt, system_instruction)
 
@@ -89,7 +89,6 @@ def api_generate_quiz(summary):
             'question': question_text,
             'choices': choices
         })
-   
     return quiz_questions
 
 
