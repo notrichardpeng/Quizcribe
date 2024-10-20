@@ -47,7 +47,7 @@ The app should be at `localhost:3000`
 
 ### Content Summarization using Google Gemini
 * Gemini API is used to automatically provide consistently structured summaries for the plain text transcripts.
-### Problem Set Generation using Google Gemini
+### Interactive Quiz Generation using Google Gemini
 * Using a chain of thought approach, problem sets are generated from the summarized content. The logic behind this feature involves step-by-step prompt engineering that ensures the generated questions are relevant, thought-provoking, and aligned with the key concepts in the summarized content.
 * Corrent answer are determined by AI-powered logic reasoning.
 
