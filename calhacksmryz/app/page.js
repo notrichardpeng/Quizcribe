@@ -188,11 +188,11 @@ export default function Home() {
         <footer className="border-t text-center border-t-zinc-100 dark:border-t-zinc-800 pt-4 mt-20">
           <p>
             Built using{" "}
-            <a href="https://gemini.google.com/" target="_blank">
+            <a href="https://gemini.google.com/" target="_blank" class="custom-link">
               Deepgram
             </a>
             ,{" "}
-            <a href="https://deepgram.com/" target="_blank">
+            <a href="https://deepgram.com/" target="_blank" class="custom-link">
               Google Gemini
             </a>
             .

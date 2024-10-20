@@ -55,7 +55,11 @@ export default function QuizResult({ score, totalQuestions, questions, userAnswe
             </Box>
         ))}
 
-        <Button className='bg-zinc-700 text-white' variant="contained" href="/" sx={{ mt: 4 }}>
+        <Button variant="contained" color="primary" href="/" sx={{ 
+            mt: 4,
+            justifyContent: 'center', 
+            alignItems: 'center',  
+            }}>
           Home
         </Button>
       </CardContent>
