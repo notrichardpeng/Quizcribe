@@ -13,8 +13,6 @@ export default function Home() {
   const HOST_URL = "http://localhost:8000/quizcribe_api"
 
   const handleSubmit = async () => {
-    console.log(url)
-
     try {
       const response = await fetch(`${HOST_URL}/transcribe/`, {
         method: 'POST',
@@ -57,7 +55,7 @@ export default function Home() {
             Quizcribe
           </Typography>
           <Typography variant="body1" sx={{ mt: 2 }}>
-            The Quizcribe uses Deepgram and Google Gemini models to summarize and generate quizzes from videos.
+            Summarizing and generating practice quizzes from educational videos.
           </Typography>
         </Box>
 
@@ -89,18 +87,19 @@ export default function Home() {
         </Box>
 
         {fetched && (
-          <Box sx={{ mt: 5 }}>
-            <Typography variant="h6" component="div">
-              Submitted URL: {fetched}
-            </Typography>
-          </Box>
+          <>
+            <Box sx={{ mt: 5 }}>
+              <Typography variant="h6" component="div">
+                Submitted URL: {fetched}
+              </Typography>
+            </Box>
+            <Box sx={{ mt: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <Button variant="contained" href='quiz'>
+                Test My Knowledge!
+              </Button>
+            </Box>
+          </>
         )}
-
-        <Box sx={{ mt: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <Button variant="contained" href='quiz'>
-            Quiz
-          </Button>
-        </Box>
 
       </Container>
     </>

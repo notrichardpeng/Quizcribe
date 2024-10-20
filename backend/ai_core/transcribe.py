@@ -2,10 +2,13 @@ from deepgram import (
     DeepgramClient,
     PrerecordedOptions,
 )
+from dotenv import load_dotenv
+
+import os
 import yt_dlp
 
-# The API key 
-DEEPGRAM_API_KEY = ''
+load_dotenv() 
+DEEPGRAM_API_KEY = os.getenv("DEEPGRAM_API_KEY")
 
 def extract_video(link):
 
