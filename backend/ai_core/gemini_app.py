@@ -87,9 +87,14 @@ def api_generate_quiz(summary):
         for line in lines[1:]:
             choice_text = line.strip()
             correct = '(correct)' in choice_text  # Mark the answer as correct if "(correct)" is found
-             # Add the choice to the list
+            # Format and add the choice to the list
+        
+            choice_text = choice_text.replace(' (correct)', '').replace(' (incorrect)', '').split(') ')[1].strip()
+            print(choice_text)
+            choice_text = re.sub(r'^[^a-zA-Z0-9]+|[^a-zA-Z0-9]+$', '', choice_text)
+
             choices.append({
-                'text': choice_text.replace(' (correct)', '').replace(' (incorrect)', '').split(') ')[1].strip(),  # Strip "a)", "b)", etc.
+                'text': choice_text,
                 'correct': correct
             })
 
