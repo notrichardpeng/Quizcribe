@@ -10,7 +10,7 @@ Purpose: This app was made to create a solution for more versatile and time-effi
 Main Features:
 * Automated voice-to-speech transcription that converts videos/audio of any length into text.
 * AI-powered video summary and practice problem generation.
-* Detection and transcription support for 16 languages. 
+* Video detection and transcription support for 16 languages. 
 
 ## Installation Instructions
 To install dependencies:
@@ -33,7 +33,7 @@ python manage.py runserver
 The app should be at `localhost:3000`
 
 ## Tech Stack
-* Frontend: Next.js/React, Material UI
+* Frontend: Next.js/React, Tailwind CSS, Material UI
 * Backend: Django/Python
 * API: Deepgram (Speech to Text), Google Gemini 1.5, YouTube DL
 

@@ -79,6 +79,8 @@ def api_generate_quiz(summary):
         # Remove asterisks and preceding numbers
         question_text = re.sub(r'^\*\*|\*\*$', '', question_text).strip()
         question_text = re.sub(r'^\d+\.\s*', '', question_text).strip()
+        question_text = re.sub(r'^\*\*|\*\*$', '', question_text).strip()
+        question_text = re.sub(r'^\d+\.\s*', '', question_text).strip()
 
         # Extract the choices (subsequent lines in the block)
         choices = []

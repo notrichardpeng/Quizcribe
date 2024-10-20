@@ -17,7 +17,7 @@ class TranscribeAndSummarizeView(APIView):
             return Response({'error': 'No URL provided'}, status=status.HTTP_400_BAD_REQUEST)
         
         # Testing
-        return Response({'response': "Brownian motion, any of various physical phenomena in which some quantity is constantly undergoing small, random fluctuations. It was named for the Scottish botanist Robert Brown, the first to study such fluctuations (1827)."}, status=status.HTTP_200_OK)
+        # return Response({'response': "Brownian motion, any of various physical phenomena in which some quantity is constantly undergoing small, random fluctuations. It was named for the Scottish botanist Robert Brown, the first to study such fluctuations (1827)."}, status=status.HTTP_200_OK)
 
         try:
             print("Transcribing video...")
