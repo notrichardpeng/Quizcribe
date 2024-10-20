@@ -53,7 +53,7 @@ The app should be at `localhost:3000`
 * Corrent answer are determined by AI-powered logic reasoning.
 
 ### Demo
-![image (1)](https://github.com/user-attachments/assets/7a036987-1203-4f49-8456-accf12a5f14d)
+![屏幕截图 2024-10-20 112138](https://github.com/user-attachments/assets/b9d00b12-2ddc-4c5c-958e-a594b7e33154)
 _Summary to video url provided_
 
 ![image (2)](https://github.com/user-attachments/assets/e7b33303-5641-4325-8a1c-6dd0e53fd341)
