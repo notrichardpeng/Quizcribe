@@ -30,11 +30,12 @@ class TranscribeAndSummarizeView(APIView):
 
 
 
-class GenerateQA(APIView):
+class GenerateQAView(APIView):
     """
     Handles generating questions and answers
     """
-    
+    permission_classes = [AllowAny]
+
     def post(self, request):
         text = request.data.get('text')
         if not text:
