@@ -95,7 +95,7 @@ export default function Home() {
             ></Typewriter>
           </h1>
           <Typography variant="body1" fontWeight="semibold" sx={{ mt: 2 }}>
-            Summarizing and generating practice quizzes from educational videos.
+            Studying can be done easily, conveniently, and anywhere.
           </Typography>
         </Box>
 
