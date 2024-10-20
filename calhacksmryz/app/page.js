@@ -131,7 +131,7 @@ export default function Home() {
             sx={{
               textAlign: "center",
               fontWeight: "semibold",
-              mt: 10
+              mt: 10  
             }}
           >
             <CircularProgress size="3rem" />
