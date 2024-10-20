@@ -22,6 +22,8 @@ export default function Home() {
 
   const handleSubmit = async () => {
     try {
+      setIsHidden(true);
+
       const response = await fetch(`${HOST_URL}/transcribe/`, {
         method: 'POST',
         headers: {
