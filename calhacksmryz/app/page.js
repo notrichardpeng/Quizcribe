@@ -7,6 +7,7 @@ import {
   Box,
   Typography,
   CircularProgress,
+  LinearProgress
 } from "@mui/material";
 
 export default function Home() {
@@ -83,7 +84,7 @@ export default function Home() {
               mt: 10  // Material-UI's spacing system (theme spacing multiplier)
             }}
           >
-            <CircularProgress />
+            <CircularProgress size="3rem" />
             <p>Dissecting video... This may take a while...</p>
           </Box>
         ) : (
@@ -145,8 +146,8 @@ export default function Home() {
             <Box sx={{ mt: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               {isTesting ? (
                 <div style={{ textAlign: "center" }}>
-                  <CircularProgress />
-                  <p>Loading quiz... Please wait...</p>
+                  <LinearProgress  />
+                  <p>Generating your quiz... Please wait...</p>
                 </div>
               ) : (
                 <Button className='bg-zinc-700' variant="contained" onClick={handleTestMyKnowledge}>
