@@ -61,7 +61,7 @@ export default function Home() {
         }}
       >
         {/* Header */}
-        <Box component="header" sx={{width: { xs: "100%", md: "55%" },}}>
+        <Box component="header" sx={{width: { xs: "100%", md: "55%" }, justifyContent: 'center', textAlign: 'center',}}>
           <Typography variant="h3" component="h1" fontWeight="bold">
             Quizcribe
           </Typography>
@@ -71,14 +71,20 @@ export default function Home() {
         </Box>
 
         {isHidden ? (
-          <div style={{ textAlign: "center", paddingTop: "2rem" }}>
+          <Box
+            sx={{
+              textAlign: "center",
+              fontWeight: "semibold",
+              mt: 10  // Material-UI's spacing system (theme spacing multiplier)
+            }}
+          >
             <CircularProgress />
             <p>Dissecting video... This may take a while...</p>
-          </div>
+          </Box>
         ) : (
           <Box
             className='bg-white'
-          component="form"
+            component="form"
             onSubmit={handleSubmit}
             sx={{
               mt: 10,
@@ -107,11 +113,30 @@ export default function Home() {
 
         {fetched && (
           <>
-            <Box className='bg-white text-black' sx={{ mt: 5 }}>
+            <Box
+            className='bg-white text-black'
+            component="form"
+            onSubmit={handleSubmit}
+            sx={{
+              mt: 10,
+              display: "grid",
+              gap: 2,
+              p: 4,
+              backgroundColor: "background.paper",
+              borderRadius: "12px",
+              width: { xs: "100%", md: "80%" },
+              boxShadow: 1,
+            }}
+            >
+              <Typography variant="h4" fontWeight="bold">
+                Summary
+              </Typography>
               <Typography variant="h6" component="div">
                 {fetched}
               </Typography>
+
             </Box>
+
             <Box sx={{ mt: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Button className='bg-zinc-700' variant="contained" href='quiz'>
                 Test My Knowledge!
@@ -130,7 +155,6 @@ export default function Home() {
           <a href="https://deepgram.com/" target="_blank">
             Google Gemini
           </a>{" "}
-          .
         </p>
 
         <p className="mt-4">
