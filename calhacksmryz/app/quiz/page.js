@@ -6,33 +6,6 @@ import { useState, useEffect } from 'react';
 import CardTemp from './card';
 import { Card, CardContent, CardActions, CardMedia, Box, Button, Typography, IconButton } from '@mui/material';
 
-const questions = [
-  {
-    question: "What is 1+1?",
-    choices: [
-      { text: "3", correct: false },
-      { text: "2", correct: true },
-      { text: "1", correct: false },
-    ]
-  },
-  {
-    question: "What color is the sky?",
-    choices: [
-      { text: "Blue", correct: true },
-      { text: "Green", correct: false },
-      { text: "Red", correct: false },
-    ]
-  },
-  {
-    question: "What is 2+2?",
-    choices: [
-      { text: "3", correct: false },
-      { text: "4", correct: true },
-      { text: "5", correct: false },
-    ]
-  }
-];
-
 export default function QuizPage() {
   const questions = JSON.parse(sessionStorage.getItem('questions'));
 

@@ -8,7 +8,9 @@ import {
   Box,
   Typography,
   CircularProgress,
+  LinearProgress
 } from "@mui/material";
+import { Typewriter } from "react-simple-typewriter";
 
 export default function Home() {
   const router = useRouter();
@@ -17,6 +19,7 @@ export default function Home() {
   const [url, setUrl] = useState('');
   const [fetched, setFetched] = useState('');
   const [isHidden, setIsHidden] = useState(false);
+  const [isTesting, setIsTesting] = useState(false);
 
   const handleInputChange = (e) => {
     setUrl(e.target.value);
@@ -27,7 +30,7 @@ export default function Home() {
       setIsHidden(true);
 
       const response = await fetch(`${HOST_URL}/transcribe/`, {
-        method: 'POST',
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -48,7 +51,7 @@ export default function Home() {
   };
 
   const enterQuiz = async () => {
-    console.log(JSON.stringify({ "text": fetched }))
+    setIsTesting(true);
 
     const response = await fetch(`${HOST_URL}/generate-qa/`, {
       method: 'POST',
@@ -79,21 +82,34 @@ export default function Home() {
           px: { xs: 2, md: 4 },
         }}
       >
-        {/* Header */}
-        <Box component="header" sx={{ width: { xs: "100%", md: "55%" }, }}>
-          <Typography variant="h3" component="h1" fontWeight="bold">
-            Quizcribe
-          </Typography>
+        <Box component="header" sx={{ width: { xs: "100%", md: "55%" } }}>
+          <h1 style={{ fontSize: "3rem", fontWeight: "bold", fontFamily: 'Helvetica Neue' }}>
+            <Typewriter
+              words={["Quizcribe"]}
+              cursor
+              cursorStyle="_"
+              loop={100}
+              typeSpeed={100}
+              deleteSpeed={80}
+              delaySpeed={5000}
+            ></Typewriter>
+          </h1>
           <Typography variant="body1" fontWeight="semibold" sx={{ mt: 2 }}>
             Summarizing and generating practice quizzes from educational videos.
           </Typography>
         </Box>
 
         {isHidden ? (
-          <div style={{ textAlign: "center", paddingTop: "2rem" }}>
-            <CircularProgress />
+          <Box
+            sx={{
+              textAlign: "center",
+              fontWeight: "semibold",
+              mt: 10  // Material-UI's spacing system (theme spacing multiplier)
+            }}
+          >
+            <CircularProgress size="3rem" />
             <p>Dissecting video... This may take a while...</p>
-          </div>
+          </Box>
         ) : (
           <Box
             className='bg-white'
@@ -118,7 +134,11 @@ export default function Home() {
               value={url}
               onChange={handleInputChange}
             />
-            <Button className='bg-zinc-700 text-white' variant="contained" onClick={handleSubmit}>
+            <Button
+              className="bg-zinc-700 text-white"
+              variant="contained"
+              onClick={handleSubmit}
+            >
               Quizcribe
             </Button>
           </Box>
@@ -126,15 +146,41 @@ export default function Home() {
 
         {fetched && (
           <>
-            <Box className='bg-white text-black' sx={{ mt: 5 }}>
+            <Box
+              className='bg-white text-black'
+              component="form"
+              onSubmit={handleSubmit}
+              sx={{
+                mt: 10,
+                display: "grid",
+                gap: 2,
+                p: 4,
+                backgroundColor: "background.paper",
+                borderRadius: "12px",
+                width: { xs: "100%", md: "90%" },
+                boxShadow: 1,
+              }}
+            >
+              <Typography className="text-zinc-800" variant="h4" fontWeight="bold" sx={{ justifyContent: 'center', textAlign: 'center', }}>
+                Summary
+              </Typography>
               <Typography variant="h6" component="div">
                 {fetched}
               </Typography>
+
             </Box>
+
             <Box sx={{ mt: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Button className='bg-zinc-700' variant="contained" onClick={enterQuiz}>
-                Test My Knowledge!
-              </Button>
+              {isTesting ? (
+                <div style={{ textAlign: "center" }}>
+                  <LinearProgress />
+                  <p>Generating your quiz... Please wait...</p>
+                </div>
+              ) : (
+                <Button className='bg-zinc-700' variant="contained" onClick={enterQuiz}>
+                  Test My Knowledge!
+                </Button>
+              )}
             </Box>
           </>
         )}
@@ -148,10 +194,9 @@ export default function Home() {
             ,{" "}
             <a href="https://deepgram.com/" target="_blank">
               Google Gemini
-            </a>{" "}
+            </a>
             .
           </p>
-
           <p className="mt-4">
             <a
               href="https://github.com/notrichardpeng/Quizcribe"
@@ -171,7 +216,6 @@ export default function Home() {
             </a>
           </p>
         </footer>
-
       </Container>
     </>
   );
