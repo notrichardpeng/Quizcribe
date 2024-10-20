@@ -17,12 +17,21 @@ export default function Home() {
   const HOST_URL = "http://localhost:8000/quizcribe_api"
 
   const [url, setUrl] = useState('');
+  const [file, setFile] = useState(null);
   const [fetched, setFetched] = useState('');
   const [isHidden, setIsHidden] = useState(false);
   const [isTesting, setIsTesting] = useState(false);
 
   const handleInputChange = (e) => {
     setUrl(e.target.value);
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0]
+    if (file) {
+      setFile(file)
+      setUrl(file.name)
+    }
   };
 
   const handleSubmit = async () => {
@@ -118,7 +127,9 @@ export default function Home() {
             onSubmit={handleSubmit}
             sx={{
               mt: 10,
-              display: "grid",
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
               gap: 2,
               p: 4,
               backgroundColor: "background.paper",
@@ -127,18 +138,46 @@ export default function Home() {
               boxShadow: 1,
             }}
           >
-            <TextField
-              label="Video URL"
-              variant="outlined"
-              fullWidth
-              rows={1}
-              value={url}
-              onChange={handleInputChange}
-            />
+            <Box
+              sx={{
+                display: "flex",
+                gap: 2,
+                width: "100%",
+                alignItems: "center",
+              }}
+            >
+              <TextField
+                label="Video URL"
+                variant="outlined"
+                fullWidth
+                value={url}
+                onChange={handleInputChange}
+              />
+              <input
+                accept="video/*"
+                style={{ display: 'none' }}
+                id="file-input"
+                type="file"
+                onChange={handleFileChange}
+              />
+              <label htmlFor="file-input">
+                <Button 
+                className="bg-zinc-700 text-white"
+                component="span" 
+                variant="contained"
+                sx={{ 
+                  height: '56px',
+                  whiteSpace: 'nowrap' }}>
+                Upload
+                </Button>
+              </label>
+            </Box>
+
             <Button
               className="bg-zinc-700 text-white"
               variant="contained"
               onClick={handleSubmit}
+              sx={{ width: "100%" }} 
             >
               Quizcribe
             </Button>
@@ -189,11 +228,11 @@ export default function Home() {
         <footer className="border-t text-center border-t-zinc-100 dark:border-t-zinc-800 pt-4 mt-20">
           <p>
             Built using{" "}
-            <a href="https://gemini.google.com/" target="_blank" class="custom-link">
+            <a href="https://gemini.google.com/" target="_blank" className="custom-link">
               Deepgram
             </a>
             ,{" "}
-            <a href="https://deepgram.com/" target="_blank" class="custom-link">
+            <a href="https://deepgram.com/" target="_blank" className="custom-link">
               Google Gemini
             </a>
             .
