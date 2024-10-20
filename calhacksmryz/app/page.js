@@ -36,6 +36,7 @@ export default function Home() {
 
       if (response.ok) {
         setFetched(data["response"]);
+        setIsHidden(false);
       } else {
         console.error("Error:", data.error);
       }
