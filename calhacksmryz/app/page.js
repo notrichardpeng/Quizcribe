@@ -94,8 +94,10 @@ export default function Home() {
               delaySpeed={5000}
             ></Typewriter>
           </h1>
+
           <Typography variant="body1" fontWeight="semibold" sx={{ mt: 2, fontFamily: 'Helvetica Neue' }}>
-            Summarizing and generating practice quizzes from educational videos.
+            Studying can be done easily, conveniently, and anywhere.
+            
           </Typography>
         </Box>
 
