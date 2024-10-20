@@ -1,5 +1,6 @@
 # Quizcribe
 Calhacks 11.0 Michael Siu, Richard Peng, Yiling Yuan, Zhen Liu
+![image](https://github.com/user-attachments/assets/c3e677cb-60ae-4082-a772-d5cc865e4787)
 
 ## Overview
 Quizcribe is educational software that supplements students with AI-powered study resources generated from inputted videos or audio.
@@ -45,6 +46,15 @@ The app should be at `localhost:3000`
 * Deepgram AI's built-in language detection system allows for the transcription of videos/audio in 16 languages.
 
 ### Content Summarization using Google Gemini
-
+* Automatically generating concise summaries from educational content of different languages and lengths.
 ### Problem Set Generation using Google Gemini
+* Using a chain of thought approach, problem sets are generated from the summarized content. The logic behind this feature involves step-by-step prompt engineering that ensures the generated questions are relevant, thought-provoking, and aligned with the key concepts in the summarized content.
+* Corrent answer are determined by AI-powered logic reasoning.
 
+### Demo
+* Summary to video url provided
+![image (1)](https://github.com/user-attachments/assets/7a036987-1203-4f49-8456-accf12a5f14d)
+* Quiz
+![image (2)](https://github.com/user-attachments/assets/e7b33303-5641-4325-8a1c-6dd0e53fd341)
+* Result
+![image (3)](https://github.com/user-attachments/assets/293ff408-c2a7-4627-b823-908b60d44961)
