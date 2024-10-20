@@ -1,4 +1,6 @@
 import os
+import re
+
 from dotenv import load_dotenv
 import google.generativeai as genai
 
@@ -73,6 +75,11 @@ def api_generate_quiz(summary):
         
         # Extract the question text (first line of the block)
         question_text = lines[0].strip()
+
+        # Remove asterisks and preceding numbers
+        question_text = re.sub(r'^\*\*|\*\*$', '', question_text).strip()
+        question_text = re.sub(r'^\d+\.\s*', '', question_text).strip()
+
         # Extract the choices (subsequent lines in the block)
         choices = []
         for line in lines[1:]:
