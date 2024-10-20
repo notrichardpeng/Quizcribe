@@ -124,11 +124,11 @@ export default function Home() {
               p: 4,
               backgroundColor: "background.paper",
               borderRadius: "12px",
-              width: { xs: "100%", md: "80%" },
+              width: { xs: "100%", md: "90%" },
               boxShadow: 1,
             }}
             >
-              <Typography variant="h4" fontWeight="bold">
+              <Typography className="text-zinc-800" variant="h4" fontWeight="bold" sx={{justifyContent: 'center', textAlign: 'center',}}>
                 Summary
               </Typography>
               <Typography variant="h6" component="div">
