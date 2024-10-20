@@ -10,7 +10,7 @@ Through providing a more versatile, time-efficient, and fun study medium, Quizcr
 
 Main Features:
 * Automated voice-to-speech transcription that converts videos/audio of any length into text.
-* AI-powered video summary and practice problem generation.
+* AI-powered video summary and interactive quiz generation.
 * Video detection and transcription support for 16 languages. 
 
 ## Running & Installation
