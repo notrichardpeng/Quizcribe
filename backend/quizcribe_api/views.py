@@ -42,6 +42,6 @@ class GenerateQA(APIView):
         
         try:
             quiz_questions = api_generate_quiz(text)
-            return Response({'quiz_questions': quiz_questions}, status=status.HTTP_200_OK)
+            return Response({'response': quiz_questions}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
