@@ -46,7 +46,7 @@ The app should be at `localhost:3000`
 * Deepgram AI's built-in language detection system allows for the transcription of videos/audio in 16 languages.
 
 ### Content Summarization using Google Gemini
-* Automatically generating concise summaries from educational content of different languages and lengths.
+* Gemini API is used to automatically provide a consistently structured summary of the educational video.
 ### Problem Set Generation using Google Gemini
 * Using a chain of thought approach, problem sets are generated from the summarized content. The logic behind this feature involves step-by-step prompt engineering that ensures the generated questions are relevant, thought-provoking, and aligned with the key concepts in the summarized content.
 * Corrent answer are determined by AI-powered logic reasoning.
