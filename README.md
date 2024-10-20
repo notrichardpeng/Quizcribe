@@ -10,7 +10,7 @@ Purpose: This app was made to create a solution for more versatile and time-effi
 Main Features:
 * Automated voice-to-speech transcription that converts videos/audio of any length into text.
 * AI-powered video summary and practice problem generation.
-* Detection and transcription support for 16 languages. 
+* Video detection and transcription support for 16 languages. 
 
 ## Installation Instructions
 To install dependencies:
