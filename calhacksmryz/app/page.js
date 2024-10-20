@@ -18,10 +18,12 @@ export default function Home() {
     setUrl(e.target.value);
   };
 
+  const HOST_URL = "http://localhost:8000/quizcribe_api"
+
   const handleSubmit = async () => {
     try {
-      const response = await fetch("/api/", {
-        method: "POST",
+      const response = await fetch(`${HOST_URL}/transcribe/`, {
+        method: 'POST',
         headers: {
           "Content-Type": "application/json",
         },
@@ -31,7 +33,7 @@ export default function Home() {
       const data = await response.json();
 
       if (response.ok) {
-        setFetched(data.url);
+        setFetched(data["response"]);
       } else {
         console.error("Error:", data.error);
       }
@@ -61,10 +63,10 @@ export default function Home() {
             Quizcribe
           </Typography>
           <Typography variant="body1" sx={{ mt: 2 }}>
-            The Quizcribe uses Deepgram and Google Gemini models to summarize
-            and generate quizzes from videos.
+            The Quizcribe uses Deepgram and Google Gemini models to summarize and generate quizzes from videos.
           </Typography>
         </Box>
+
         {isHidden ? (
           <div style={{ textAlign: "center", paddingTop: "2rem" }}>
             <CircularProgress />
@@ -107,18 +109,12 @@ export default function Home() {
           </Box>
         )}
 
-        <Box
-          sx={{
-            mt: 10,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Button variant="contained" href="quiz">
+        <Box sx={{ mt: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Button variant="contained" href='quiz'>
             Quiz
           </Button>
         </Box>
+
       </Container>
     </>
   );
