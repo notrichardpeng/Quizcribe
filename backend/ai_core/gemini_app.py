@@ -45,7 +45,7 @@ def summarize_text(input):
 # Function to generate quiz questions based on summary
  #output question in a list of python dictionary
 def generate_quiz_questions(summary):
-    question_prompt = f"Generate three quiz questions based on the following summary:\n\n{summary}"
+    question_prompt = f"Generate three quiz questions based on the following summary, add '(correct)' only behind correct choice:\n\n{summary}"
     system_instruction = "You are an expert in generating quiz questions from summarized content."
     return call_gemini(question_prompt, system_instruction)
 
@@ -54,9 +54,8 @@ def api_summarize(text_input):
     """
     API call to get the summary of the input text.
     """
-    print("Summarizing the text...")
+    
     summary = summarize_text(text_input)
-    print(f"Summary:\n{summary}\n")
     return summary
 
 # API 2: Quiz Generation API Call
@@ -64,12 +63,12 @@ def api_generate_quiz(summary):
     """
     API call to generate quiz questions based on the provided summary.
     """
-    print("Generating quiz questions...")
     raw_quiz_questions = generate_quiz_questions(summary)
     quiz_questions = []
     questions = raw_quiz_questions.strip().split('\n\n')  # Split by double newlines to separate questions
+    
 
-    for question_block in questions:
+    for question_block in questions[1: ]:
         lines = question_block.strip().split('\n')
         
         # Extract the question text (first line of the block)
@@ -90,21 +89,16 @@ def api_generate_quiz(summary):
             'question': question_text,
             'choices': choices
         })
-
-    print(f"Quiz Questions (parsed):\n{quiz_questions}\n")
+   
     return quiz_questions
 
-
-
-    
-    return quiz_questions
 
 
 
 # Example usage
 if __name__ == '__main__':
     # Example text input (replace this with your own text)
-    text_input = "The 1950s was a decade marked by the post-World War II boom, the dawn of the Cold War and the civil rights movement in the United States. “America at this moment,” said the former British Prime Minister Winston Churchill in 1945, “stands at the summit of the world.” During the 1950s, it was easy to see what Churchill meant. The United States was the world’s strongest military power. Its economy was booming, and the fruits of this prosperity–new cars, suburban houses and other consumer goods–were available to more people than ever before. However, the 1950s were also an era of great conflict. For example, the nascent civil rights movement and the crusade against communism at home and abroad in the Korean War exposed underlying divisions in American society."
+    text_input = "According to the Olympic Foundation for Culture and Heritage, the U.S. leds the all-time medal count going into the Paris Games with a total of 2,975 Olympic medals, followed by the now-defunct Soviet Union, with 1,204 medals, and Germany, with 1,058 medals. And, as hoped, the U.S. added to its medal haul at the 2024 Games, topping 3,000 total medals within the first week of competition. The American team is helped by the sheer number of competitors representing Team USA at the Paris Games: 594 athletes, of the about 10,500 athletes competing. Four countries in this year's games have only one athlete taking a shot at medal glory: Belize, Liechtenstein, Nauru and Somalia. And since Russia was banned for this year's games, any medals garnered by its few athletes competing as individual neutral athletes won't be tallied as part of the country's overall haul. The first individual neutral athlete to medal in the Games was Viyaleta Bardzilouskaya of Belarus, who took silver in women's trampoline."
     summary = api_summarize(text_input)
     quiz_questions = api_generate_quiz(summary)
 
