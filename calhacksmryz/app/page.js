@@ -13,6 +13,7 @@ export default function Home() {
   const [url, setUrl] = useState("");
   const [fetched, setFetched] = useState("");
   const [isHidden, setIsHidden] = useState(false);
+  const [isTesting, setIsTesting] = useState(false);
 
   const handleInputChange = (e) => {
     setUrl(e.target.value);
@@ -43,6 +44,10 @@ export default function Home() {
     } catch (error) {
       console.error("Error submitting URL:", error);
     }
+  };
+
+  const handleTestMyKnowledge = () => {
+    setIsTesting(true); 
   };
 
   return (
@@ -113,9 +118,16 @@ export default function Home() {
               </Typography>
             </Box>
             <Box sx={{ mt: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Button className='bg-zinc-700' variant="contained" href='quiz'>
-                Test My Knowledge!
-              </Button>
+              {isTesting ? (
+                <div style={{ textAlign: "center" }}>
+                  <CircularProgress />
+                  <p>Loading quiz... Please wait...</p>
+                </div>
+              ) : (
+                <Button className='bg-zinc-700' variant="contained" onClick={handleTestMyKnowledge}>
+                  Test My Knowledge!
+                </Button>
+              )}
             </Box>
           </>
         )}
