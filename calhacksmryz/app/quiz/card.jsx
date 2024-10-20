@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 export default function CardTemp({ question, questionIndex, totalQuestions, onChoiceSelect, onSubmit, onNext, selectedChoice, submitted, isCorrect }) {
   return (
-    <Card sx={{ display: 'flex', width: 800, height: 328, borderRadius: 3, boxShadow: 3 }}>
+    <Card className='bg-zinc-50' sx={{ display: 'flex', width: 800, height: 328, borderRadius: 3, boxShadow: 3 }}>
 
       <CardContent sx={{ flex: '1 0 auto', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
         <Typography variant="subtitle1" color="primary" gutterBottom>
@@ -69,7 +69,7 @@ export default function CardTemp({ question, questionIndex, totalQuestions, onCh
             Submit
           </Button>
 
-          <Button onClick={onNext} variant="contained" color="secondary" sx={{ mt: 2 }} disabled={!submitted}>
+          <Button className='bg-zinc-700 text-white' onClick={onNext} variant="contained" color="secondary" sx={{ mt: 2 }} disabled={!submitted}>
             Next
           </Button>
         </CardActions>
