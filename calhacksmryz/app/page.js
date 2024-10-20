@@ -17,12 +17,17 @@ export default function Home() {
   const HOST_URL = "http://localhost:8000/quizcribe_api"
 
   const [url, setUrl] = useState('');
+  const [file, setFile] = useState(null);
   const [fetched, setFetched] = useState('');
   const [isHidden, setIsHidden] = useState(false);
   const [isTesting, setIsTesting] = useState(false);
 
   const handleInputChange = (e) => {
     setUrl(e.target.value);
+  };
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
   };
 
   const handleSubmit = async () => {
@@ -52,6 +57,23 @@ export default function Home() {
 
   const enterQuiz = async () => {
     setIsTesting(true);
+
+    if (file) {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const uploadResponse = await fetch(`${HOST_URL}/upload`, {
+        method: 'POST',
+        body: formData,
+      });
+
+      const uploadData = await uploadResponse.json();
+      if (uploadResponse.ok) {
+        console.log('File uploaded successfully', uploadData);
+      } else {
+        console.error('Upload error:', uploadData.error);
+      }
+    }
 
     const response = await fetch(`${HOST_URL}/generate-qa/`, {
       method: 'POST',
@@ -135,6 +157,22 @@ export default function Home() {
               value={url}
               onChange={handleInputChange}
             />
+            <input
+              accept="video/*"
+              style={{ display: 'none' }}
+              id="file-input"
+              type="file"
+              onChange={handleFileChange}
+            />
+            <label htmlFor="file-input">
+              <Button 
+              className="bg-zinc-700 text-white"
+              component="span" 
+              variant="contained"
+              sx={{ justifyContent: 'center', textAlign: 'center',alignItems: 'center' }}>
+                Upload
+              </Button>
+            </label>
             <Button
               className="bg-zinc-700 text-white"
               variant="contained"
