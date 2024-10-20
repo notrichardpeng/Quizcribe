@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import AllowAny
 
-from ai_core import transcribe
+from ai_core import transcribe, api_generate_quiz, summarize_text, generate_quiz_questions, summarize_text, call_gemini
 
 class TranscribeAndSummarizeView(APIView):
     """
