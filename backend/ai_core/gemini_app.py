@@ -45,7 +45,7 @@ def summarize_text(input):
 # Function to generate quiz questions based on summary
  #output question in a list of python dictionary
 def generate_quiz_questions(summary):
-    question_prompt = f"Generate three quiz questions based on the following summary, only add '(correct)' behind correct choice:\n\n{summary}"
+    question_prompt = f"Generate 10 quiz questions with 3 answers based on the following summary, only add '(correct)' behind correct choice:\n\n{summary}"
     system_instruction = "You are an expert in generating quiz questions from summarized content."
     return call_gemini(question_prompt, system_instruction)
 
@@ -68,7 +68,7 @@ def api_generate_quiz(summary):
     questions = raw_quiz_questions.strip().split('\n\n')  # Split by double newlines to separate questions
     
 
-    for question_block in questions[1: ]:
+    for question_block in questions[1:]:
         lines = question_block.strip().split('\n')
         
         # Extract the question text (first line of the block)
@@ -80,7 +80,7 @@ def api_generate_quiz(summary):
             correct = '(correct)' in choice_text  # Mark the answer as correct if "(correct)" is found
              # Add the choice to the list
             choices.append({
-                'text': choice_text.replace(' (correct)', '').split(') ')[1].strip(),  # Strip "a)", "b)", etc.
+                'text': choice_text.replace(' (correct)', '').replace(' (incorrect)', '').split(') ')[1].strip(),  # Strip "a)", "b)", etc.
                 'correct': correct
             })
 
@@ -89,6 +89,7 @@ def api_generate_quiz(summary):
             'question': question_text,
             'choices': choices
         })
+
     return quiz_questions
 
 

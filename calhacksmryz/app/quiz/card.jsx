@@ -57,19 +57,19 @@ export default function CardTemp({ question, questionIndex, totalQuestions, onCh
               let isDisabled = false;
 
               if (submitted) {
-                if (choice === selectedChoice && choice.correct) {
+                if (choice?.text === selectedChoice?.text && choice?.correct) {
                   buttonVariant = "contained";
                   buttonColor = "success";
-                } else if (choice === selectedChoice && !choice.correct) {
+                } else if (choice?.text === selectedChoice?.text && !choice?.correct) {
                   buttonVariant = "contained";
                   buttonColor = "error";
-                } else if (choice.correct) {
+                } else if (choice?.correct) {
                   buttonVariant = "contained";
                   buttonColor = "success";
                 } else {
                   isDisabled = true;
                 }
-              } else if (choice === selectedChoice) {
+              } else if (choice?.text === selectedChoice?.text) {
                 buttonVariant = "contained";
                 buttonColor = "primary";
               }
