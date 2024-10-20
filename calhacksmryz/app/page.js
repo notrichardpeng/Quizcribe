@@ -1,5 +1,6 @@
-"use client";
-import React, { useState } from "react";
+'use client';
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   Container,
   TextField,
@@ -12,16 +13,17 @@ import {
 import { Typewriter } from "react-simple-typewriter";
 
 export default function Home() {
-  const [url, setUrl] = useState("");
-  const [fetched, setFetched] = useState("");
+  const router = useRouter();
+  const HOST_URL = "http://localhost:8000/quizcribe_api"
+
+  const [url, setUrl] = useState('');
+  const [fetched, setFetched] = useState('');
   const [isHidden, setIsHidden] = useState(false);
   const [isTesting, setIsTesting] = useState(false);
 
   const handleInputChange = (e) => {
     setUrl(e.target.value);
   };
-
-  const HOST_URL = "http://localhost:8000/quizcribe_api";
 
   const handleSubmit = async () => {
     try {
@@ -48,8 +50,21 @@ export default function Home() {
     }
   };
 
-  const handleTestMyKnowledge = () => {
+  const enterQuiz = async () => {
     setIsTesting(true);
+
+    const response = await fetch(`${HOST_URL}/generate-qa/`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ "text": fetched }),
+    });
+
+    const data = await response.json();
+    sessionStorage.setItem("questions", JSON.stringify(data["response"]));
+    router.push("/quiz");
+
   };
 
   return (
@@ -67,7 +82,6 @@ export default function Home() {
           px: { xs: 2, md: 4 },
         }}
       >
-        {/* Header */}
         <Box component="header" sx={{ width: { xs: "100%", md: "55%" } }}>
           <h1 style={{ fontSize: "3rem", fontWeight: "bold", fontFamily: 'Helvetica Neue' }}>
             <Typewriter
@@ -163,7 +177,7 @@ export default function Home() {
                   <p>Generating your quiz... Please wait...</p>
                 </div>
               ) : (
-                <Button className='bg-zinc-700' variant="contained" onClick={handleTestMyKnowledge}>
+                <Button className='bg-zinc-700' variant="contained" onClick={enterQuiz}>
                   Test My Knowledge!
                 </Button>
               )}
