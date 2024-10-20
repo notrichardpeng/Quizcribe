@@ -1,5 +1,6 @@
-"use client";
-import React, { useState } from "react";
+'use client';
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   Container,
   TextField,
@@ -10,15 +11,16 @@ import {
 } from "@mui/material";
 
 export default function Home() {
-  const [url, setUrl] = useState("");
-  const [fetched, setFetched] = useState("");
+  const router = useRouter();
+  const HOST_URL = "http://localhost:8000/quizcribe_api"
+
+  const [url, setUrl] = useState('');
+  const [fetched, setFetched] = useState('');
   const [isHidden, setIsHidden] = useState(false);
 
   const handleInputChange = (e) => {
     setUrl(e.target.value);
   };
-
-  const HOST_URL = "http://localhost:8000/quizcribe_api"
 
   const handleSubmit = async () => {
     try {
@@ -43,6 +45,12 @@ export default function Home() {
     } catch (error) {
       console.error("Error submitting URL:", error);
     }
+  };
+
+  const enterQuiz = () => {
+    const complexData = { text: 'Hello' };
+    const queryString = encodeURIComponent(JSON.stringify(complexData));
+    router.push(`/quiz?data=${queryString}`);
   };
 
   return (
@@ -112,7 +120,7 @@ export default function Home() {
               </Typography>
             </Box>
             <Box sx={{ mt: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Button variant="contained" href='quiz'>
+              <Button variant="contained" onClick={enterQuiz}>
                 Test My Knowledge!
               </Button>
             </Box>
