@@ -27,7 +27,11 @@ export default function Home() {
   };
 
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    const file = e.target.files[0]
+    if (file) {
+      setFile(file)
+      setUrl(file.name)
+    }
   };
 
   const handleSubmit = async () => {
@@ -127,7 +131,7 @@ export default function Home() {
             sx={{
               textAlign: "center",
               fontWeight: "semibold",
-              mt: 10  // Material-UI's spacing system (theme spacing multiplier)
+              mt: 10
             }}
           >
             <CircularProgress size="3rem" />
@@ -140,7 +144,9 @@ export default function Home() {
             onSubmit={handleSubmit}
             sx={{
               mt: 10,
-              display: "grid",
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
               gap: 2,
               p: 4,
               backgroundColor: "background.paper",
@@ -149,34 +155,46 @@ export default function Home() {
               boxShadow: 1,
             }}
           >
-            <TextField
-              label="Video URL"
-              variant="outlined"
-              fullWidth
-              rows={1}
-              value={url}
-              onChange={handleInputChange}
-            />
-            <input
-              accept="video/*"
-              style={{ display: 'none' }}
-              id="file-input"
-              type="file"
-              onChange={handleFileChange}
-            />
-            <label htmlFor="file-input">
-              <Button 
-              className="bg-zinc-700 text-white"
-              component="span" 
-              variant="contained"
-              sx={{ justifyContent: 'center', textAlign: 'center',alignItems: 'center' }}>
+            <Box
+              sx={{
+                display: "flex",
+                gap: 2,
+                width: "100%",
+                alignItems: "center",
+              }}
+            >
+              <TextField
+                label="Video URL"
+                variant="outlined"
+                fullWidth
+                value={url}
+                onChange={handleInputChange}
+              />
+              <input
+                accept="video/*"
+                style={{ display: 'none' }}
+                id="file-input"
+                type="file"
+                onChange={handleFileChange}
+              />
+              <label htmlFor="file-input">
+                <Button 
+                className="bg-zinc-700 text-white"
+                component="span" 
+                variant="contained"
+                sx={{ 
+                  height: '56px',
+                  whiteSpace: 'nowrap' }}>
                 Upload
-              </Button>
-            </label>
+                </Button>
+              </label>
+            </Box>
+
             <Button
               className="bg-zinc-700 text-white"
               variant="contained"
               onClick={handleSubmit}
+              sx={{ width: "100%" }} 
             >
               Quizcribe
             </Button>
