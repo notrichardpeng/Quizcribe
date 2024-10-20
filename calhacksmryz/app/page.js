@@ -96,8 +96,7 @@ export default function Home() {
           </h1>
 
           <Typography variant="body1" fontWeight="semibold" sx={{ mt: 2, fontFamily: 'Helvetica Neue' }}>
-            Studying can be done easily, conveniently, and anywhere.
-            
+            Rewriting open education.
           </Typography>
         </Box>
 
